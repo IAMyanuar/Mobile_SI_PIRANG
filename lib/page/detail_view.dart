@@ -14,7 +14,7 @@ class DetailPengajuan extends StatefulWidget {
 
 class _DetailPengajuanState extends State<DetailPengajuan> {
   int? idPeminjaman;
-  Datum? detail;
+  DataPeminjaman? detail;
   String? token;
   bool isLoading = false;
   bool? status;
@@ -31,7 +31,7 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
       token = prefs.getString('token');
     });
 
-    Datum response =
+    DataPeminjaman response =
         await RemoteDetailPeminjaman().detailRiwayat(token, idPeminjaman);
 
     setState(() {
@@ -61,7 +61,7 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color(0xff5e6ac0),
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -109,9 +109,14 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
                           ),
                           buildTextRow('Tanggal Selesai',
                               '${detail!.tglSelesai != null ? DateFormat('dd-MM-yyyy').format(detail!.tglSelesai!) : ""}  | ${detail!.jamSelesai != null ? detail!.jamSelesai! : ""}'),
+                          Visibility(
+                            visible: detail?.feedback != null,
+                            child:
+                                buildTextRow('feedback', '${detail?.feedback}'),
+                          ),
                           buildTextRow('Dokumen Pendukung', ''),
                           const SizedBox(height: 8.0),
-                          buildDocumentViewer(detail?.dokumenPendukung),
+                          buildDocumentViewer(detail!.dokumenPendukung),
                           const SizedBox(height: 16.0),
                           // TextButton(
                           //   onPressed: null,
@@ -145,23 +150,23 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             width: 150.0,
             child: Text(
-              '$label',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              label,
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
-          SizedBox(width: 7.0),
-          Text(
+          const SizedBox(width: 7.0),
+          const Text(
             ':',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          SizedBox(width: 3.0),
+          const SizedBox(width: 3.0),
           Expanded(
             child: Text(
               value,
-              style: TextStyle(fontWeight: FontWeight.normal),
+              style: const TextStyle(fontWeight: FontWeight.normal),
             ),
           ),
         ],
@@ -171,7 +176,7 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
 
   Widget buildDocumentViewer(String? documentUrl) {
     if (documentUrl == null || documentUrl.isEmpty) {
-      return Text('Tidak Ada Dokumen Pendukung');
+      return const Text('Tidak Ada Dokumen Pendukung');
     }
 
     if (documentUrl.toLowerCase().endsWith('.pdf')) {
@@ -185,7 +190,7 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
         documentUrl.toLowerCase().endsWith('.png')) {
       return Image.network(documentUrl);
     } else {
-      return SizedBox(
+      return const SizedBox(
           width: 3.0); // Format tidak dikenali, tampilkan widget kosong
     }
   }

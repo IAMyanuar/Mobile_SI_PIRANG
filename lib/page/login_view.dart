@@ -173,7 +173,10 @@ class _LoginViewState extends State<LoginView> {
                     if (data!.status == true) {
                       setPref(data!.token, data!.idUser);
                       // ignore: use_build_context_synchronously
-                      Navigator.pushNamed(context, '/dashboard');
+                      Navigator.pushNamed(
+                        context,
+                        '/dashboard',
+                      );
                       // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text(data?.message ?? '')),
@@ -197,7 +200,7 @@ class _LoginViewState extends State<LoginView> {
                 },
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
-                    backgroundColor: Colors.blue),
+                    backgroundColor: const Color(0xff5e6ac0)),
                 child: const Text(
                   'Sign In',
                   style: TextStyle(color: Colors.white),

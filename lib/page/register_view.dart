@@ -64,10 +64,10 @@ class _RegisterViewState extends State<RegisterView> {
                     TextFormField(
                       controller: nimController,
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
                         hintText: 'Input Your NIM',
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
+                          borderSide: const BorderSide(color: Colors.black),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
@@ -75,25 +75,23 @@ class _RegisterViewState extends State<RegisterView> {
                   ],
                 ),
                 const SizedBox(height: 10.0),
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('Name',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      TextFormField(
-                        controller: namaController,
-                        decoration: InputDecoration(
-                          border: const OutlineInputBorder(),
-                          hintText: 'Input Your Name',
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.black),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Name',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    TextFormField(
+                      controller: namaController,
+                      decoration: InputDecoration(
+                        border: const OutlineInputBorder(),
+                        hintText: 'Input Your Name',
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.black),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 10.0),
                 Column(
@@ -205,17 +203,21 @@ class _RegisterViewState extends State<RegisterView> {
                         );
                       }
                     } catch (e) {
+                      // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                             content: Text("Tidak terkoneksi ke database")),
                       );
                     }
                   },
-                  child: Text('Sign Up'),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.blue,
-                    minimumSize: Size(double.infinity, 50.0),
-                    padding: EdgeInsets.all(20.0),
+                    backgroundColor: const Color(0xff5e6ac0),
+                    minimumSize: const Size(double.infinity, 50.0),
+                    padding: const EdgeInsets.all(20.0),
+                  ),
+                  child: const Text(
+                    'Sign Up',
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
                 const SizedBox(height: 15.0),

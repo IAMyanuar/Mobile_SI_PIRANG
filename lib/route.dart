@@ -13,6 +13,7 @@ class SiPirang extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false, // Set this to false`
       initialRoute: '/login',
+      // initialRoute: '/formpengajuan',
       // initialRoute: '/dashboard',
       routes: {
         '/login': (context) => const LoginView(),

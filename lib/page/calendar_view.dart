@@ -9,6 +9,7 @@ class CalendarView extends StatefulWidget {
   const CalendarView({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _CalendarViewState createState() => _CalendarViewState();
 }
 
@@ -38,7 +39,7 @@ class _CalendarViewState extends State<CalendarView> {
       setState(() {
         events = processData(kalenderResponse);
         isLoading = false;
-        print(events);
+        // print(events);
       });
 
       // Handle ketika kalenderResponse bernilai null
@@ -89,7 +90,7 @@ class _CalendarViewState extends State<CalendarView> {
       });
 
       _selectedEvents.value = _getEventsForDay(selectedDay);
-      print(_selectedEvents.value);
+      // print(_selectedEvents.value);
     }
   }
 
@@ -113,7 +114,7 @@ class _CalendarViewState extends State<CalendarView> {
         ),
         titleSpacing: 21,
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color(0xff5e6ac0),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -140,7 +141,7 @@ class _CalendarViewState extends State<CalendarView> {
             ValueListenableBuilder<List<dynamic>>(
               valueListenable: _selectedEvents,
               builder: (context, selectedEvents, _) {
-                return Container(
+                return SizedBox(
                   height: MediaQuery.of(context).size.height *
                       0.5, // Atur tinggi sesuai kebutuhan
                   child: ListView.builder(
@@ -156,6 +157,7 @@ class _CalendarViewState extends State<CalendarView> {
                           borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: ListTile(
+                          // ignore: avoid_print
                           onTap: () => print('${selectedEvents[index]}'),
                           title: Text('${selectedEvents[index]}'),
                         ),

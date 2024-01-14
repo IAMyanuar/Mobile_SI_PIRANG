@@ -1,9 +1,10 @@
 import 'dart:convert';
+// import 'dart:io';
 
 class PeminjamanModel {
   final bool? status;
   final String? message;
-  final List<Datum>? data;
+  final List<DataPeminjaman>? data;
 
   PeminjamanModel({
     this.status,
@@ -22,7 +23,8 @@ class PeminjamanModel {
         message: json["message"],
         data: json["data"] == null
             ? []
-            : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
+            : List<DataPeminjaman>.from(
+                json["data"]!.map((x) => DataPeminjaman.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -34,8 +36,9 @@ class PeminjamanModel {
       };
 }
 
-class Datum {
+class DataPeminjaman {
   final int? id;
+  final int? idUser;
   final String? namaUser;
   final String? namaLembaga;
   final String? kegiatan;
@@ -46,13 +49,15 @@ class Datum {
   final String? status;
   final String? feedback;
   final String? dokumenPendukung;
+  final int? idRuangan;
   final String? namaRuangan;
   final String? nim;
   final String? email;
   final String? telp;
 
-  Datum({
+  DataPeminjaman({
     this.id,
+    this.idUser,
     this.namaUser,
     this.namaLembaga,
     this.kegiatan,
@@ -63,18 +68,21 @@ class Datum {
     this.status,
     this.feedback,
     this.dokumenPendukung,
+    this.idRuangan,
     this.namaRuangan,
     this.nim,
     this.email,
     this.telp,
   });
 
-  factory Datum.fromRawJson(String str) => Datum.fromJson(json.decode(str));
+  factory DataPeminjaman.fromRawJson(String str) =>
+      DataPeminjaman.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory DataPeminjaman.fromJson(Map<String, dynamic> json) => DataPeminjaman(
         id: json["id"],
+        idUser: json["id_user"],
         namaUser: json["nama_user"],
         namaLembaga: json["nama_lembaga"],
         kegiatan: json["kegiatan"],
@@ -89,6 +97,7 @@ class Datum {
         status: json["status"],
         feedback: json["feedback"],
         dokumenPendukung: json["dokumen_pendukung"],
+        idRuangan: json["id_ruangan"],
         namaRuangan: json["nama_ruangan"],
         nim: json["nim"],
         email: json["email"],
@@ -98,6 +107,7 @@ class Datum {
   Map<String, dynamic> toJson() => {
         "id": id,
         "nama_user": namaUser,
+        "user_id": idUser,
         "nama_lembaga": namaLembaga,
         "kegiatan": kegiatan,
         "tgl_mulai":
@@ -110,6 +120,7 @@ class Datum {
         "feedback": feedback,
         "dokumen_pendukung": dokumenPendukung,
         "nama_ruangan": namaRuangan,
+        "id_ruangan": idRuangan,
         "nim": nim,
         "email": email,
         "telp": telp,

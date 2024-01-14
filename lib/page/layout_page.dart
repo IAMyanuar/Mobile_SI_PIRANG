@@ -12,7 +12,23 @@ class Layout extends StatefulWidget {
 }
 
 class _LayoutState extends State<Layout> {
-  int currentPageIndex = 0;
+  late int currentPageIndex;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    // Akses argument menggunakan ModalRoute
+    final args = ModalRoute.of(context)?.settings.arguments;
+
+    if (args is Map<String, dynamic> && args.containsKey('initialPageIndex')) {
+      currentPageIndex = args['initialPageIndex'] ?? 0;
+    } else {
+      // Atur nilai default jika argument tidak ada atau tidak sesuai
+      currentPageIndex = 0;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +66,7 @@ class _LayoutState extends State<Layout> {
       body: <Widget>[
         const DashboardView(),
         const CalendarView(),
-        PengajuanView(),
+        const PengajuanView(),
         const HistoryView()
       ][currentPageIndex],
     );

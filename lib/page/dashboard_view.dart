@@ -55,11 +55,11 @@ class _DashboardViewState extends State<DashboardView> {
         ),
         titleSpacing: 21,
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color(0xff5e6ac0),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -81,10 +81,10 @@ class _DashboardViewState extends State<DashboardView> {
                   itemBuilder: (context, index) {
                     return Container(
                       height: 250,
-                      margin: EdgeInsets.only(bottom: 16.0),
+                      margin: const EdgeInsets.only(bottom: 16.0),
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: Color(0xffeee9e9),
+                        color: const Color(0xffeee9e9),
                         border: Border.all(color: Colors.grey),
                         borderRadius: BorderRadius.circular(8),
                       ),

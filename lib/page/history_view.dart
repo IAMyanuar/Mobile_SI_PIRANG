@@ -13,7 +13,7 @@ class HistoryView extends StatefulWidget {
 }
 
 class _HistoryViewState extends State<HistoryView> {
-  List<Datum> riwayat = [];
+  List<DataPeminjaman> riwayat = [];
   String? token;
   int? idUser;
   String? query;
@@ -69,7 +69,7 @@ class _HistoryViewState extends State<HistoryView> {
           ),
         ),
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color(0xff5e6ac0),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,7 +115,7 @@ class _HistoryViewState extends State<HistoryView> {
                     : ListView.builder(
                         itemCount: riwayat.length,
                         itemBuilder: (context, index) {
-                          Datum item = riwayat[index];
+                          DataPeminjaman item = riwayat[index];
                           return Column(
                             children: [
                               Padding(

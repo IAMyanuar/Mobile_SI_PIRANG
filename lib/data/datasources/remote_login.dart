@@ -7,7 +7,7 @@ class RemoteLogin {
   Future<LoginModel> login(LoginModel user) async {
     try {
       final response = await http.post(
-        Uri.parse(ApiConfig.getLoginUrl()),
+        Uri.parse(ApiConfig.postLoginUrl()),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -28,7 +28,7 @@ class RemoteLogin {
       }
     } catch (e) {
       // Handle jika terjadi error selama proses request
-      print('Error: $e');
+      // print('Error: $e');
       return LoginModel.fromJsonFail(
           {'status': false, 'message': 'Username Or Password incorrect'});
     }
